@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using StarWarsExplorer.Models;
+using StarWarsExplorer.ViewModels;
 
 namespace StarWarsExplorer
 {
@@ -23,6 +14,13 @@ namespace StarWarsExplorer
 		public MainWindow()
 		{
 			InitializeComponent();
+			DataContext = new ExplorerViewModel();
+		}
+
+		private void ItemDoubleClick_Handler(object sender, MouseButtonEventArgs e)
+		{
+			var detailsWindow = new EntityDetails(((ListViewItem)sender).Content as Entity);
+			detailsWindow.ShowDialog();
 		}
 	}
 }
